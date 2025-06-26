@@ -738,6 +738,196 @@ ng update @angular/cli@19 @angular/core@19</div>
                     </div>
                 </div>
             </div>
+                <div class="phase phase-3" id="phase3">
+            <div class="phase-header" onclick="togglePhase('phase3')">
+                <div class="phase-title">
+                    <i class="phase-icon fas fa-wrench"></i>
+                    Phase 3 : Optimisations Post-Migration
+                </div>
+                <i class="toggle-icon fas fa-chevron-down"></i>
+            </div>
+            <div class="phase-content">
+                <div class="section">
+                    <h3 class="section-title"><i class="fas fa-code"></i> 3.1 Modernisation du code</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox" class="checkbox"> <strong>Adoption des Standalone Components</strong></li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Migration vers les Signals</strong> (si applicable)</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Utilisation du nouveau Control Flow</strong> (@if, @for, @switch)</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Optimisation des imports</strong> et tree-shaking</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3 class="section-title"><i class="fas fa-chart-line"></i> 3.2 Performance et build</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox" class="checkbox"> <strong>Analyse des bundles</strong></li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Optimisation des lazy loading</strong></li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Configuration des budgets</strong> dans angular.json</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Tests de performance</strong> avant/après</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3 class="section-title"><i class="fas fa-check-circle"></i> 3.3 Tests et validation</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox" class="checkbox"> <strong>Tests unitaires</strong> complets</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Tests e2e</strong> sur les parcours critiques</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Tests de régression</strong> visuels</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Tests de performance</strong> (Lighthouse, etc.)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase phase-4" id="phase4">
+            <div class="phase-header" onclick="togglePhase('phase4')">
+                <div class="phase-title">
+                    <i class="phase-icon fas fa-tools"></i>
+                    Phase 4 : Outils et Ressources
+                </div>
+                <i class="toggle-icon fas fa-chevron-down"></i>
+            </div>
+            <div class="phase-content">
+                <div class="section">
+                    <h3 class="section-title"><i class="fas fa-cogs"></i> Outils de migration</h3>
+                    <ul class="tools-grid">
+                        <li class="tool-card">
+                            <h4>Angular Update Guide</h4>
+                            <ul>
+                                <li><a href="https://update.angular.io/" target="_blank">https://update.angular.io/</a></li>
+                            </ul>
+                        </li>
+                        <li class="tool-card">
+                            <h4>ng update</h4>
+                            <ul>
+                                <li>Outil officiel de migration</li>
+                            </ul>
+                        </li>
+                        <li class="tool-card">
+                            <h4>Angular DevKit</h4>
+                            <ul>
+                                <li>Pour les migrations custom</li>
+                            </ul>
+                        </li>
+                        <li class="tool-card">
+                            <h4>Codelyzer</h4>
+                            <ul>
+                                <li>Analyse statique du code</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3 class="section-title"><i class="fas fa-check"></i> Outils de validation</h3>
+                    <ul class="tools-grid">
+                        <li class="tool-card">
+                            <h4>Angular CLI Analyzer</h4>
+                            <ul>
+                                <li><code>ng build --stats-json</code></li>
+                            </ul>
+                        </li>
+                        <li class="tool-card">
+                            <h4>Bundle Analyzer</h4>
+                            <ul>
+                                <li><code>webpack-bundle-analyzer</code></li>
+                            </ul>
+                        </li>
+                        <li class="tool-card">
+                            <h4>Lighthouse</h4>
+                            <ul>
+                                <li>Performance testing</li>
+                            </ul>
+                        </li>
+                        <li class="tool-card">
+                            <h4>Angular DevTools</h4>
+                            <ul>
+                                <li>Debug et profiling</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3 class="section-title"><i class="fas fa-book"></i > Documentation</h3>
+                    <ul class="tools-grid">
+                        <li class="tool-card">
+                            <h4>Angular Changelog</h4>
+                            <ul>
+                                <li>Détails de chaque version</li>
+                            </ul>
+                        </li>
+                        <li class="tool-card">
+                            <h4>Angular Blog</h4>
+                            <ul>
+                                <li>Annonces et guides</li>
+                            </ul>
+                        </li>
+                        <li class="tool-card">
+                            <h4>GitHub Issues</h4>
+                            <ul>
+                                <li>Pour les problèmes spécifiques</li>
+                            </ul>
+                        </li>
+                        <li class="tool-card">
+                            <h4>Stack Overflow</h4>
+                            <ul>
+                                <li>Communauté</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase phase-5" id="phase5">
+            <div class="phase-header" onclick="togglePhase('phase5')">
+                <div class="phase-title">
+                    <i class="phase-icon fas fa-exclamation-triangle"></i>
+                    Phase 5 : Gestion des Risques
+                </div>
+                <i class="toggle-icon fas fa-chevron-down"></i>
+            </div>
+            <div class="phase-content">
+                <div class="section">
+                    <h3 class="section-title"><i class="fas fa-check-circle"></i> Validation à chaque étape</h3>
+                    <div class="code-block">
+# Script de validation type
+npm run test
+npm run e2e
+ng build --prod
+ng lint</div>
+                </div>
+                <div class="section">
+                    <h3 class="section-title"><i class="fas fa-undo"></i> Rollback strategy</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox" class="checkbox"> <strong>Tags Git</strong> à chaque version stable</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Documentation des changements</strong> critiques</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Plan de rollback</strong> pour chaque étape</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Tests de régression</strong> automatisés</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3 class="section-title"><i class="fas fa-exclamation"></i> Gestion des breaking changes</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox" class="checkbox"> <strong>Lecture systématique</strong> des changelogs</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Tests sur environnement</strong> de staging</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Migration progressive</strong> des features</li>
+                        <li><input type="checkbox" class="checkbox"> <strong>Monitoring</strong> post-déploiement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title"><i class="fas fa-list-check"></i> Checklist de Validation Finale</h3>
+            <ul class="checklist">
+                <li><input type="checkbox" class="checkbox"> <strong>Toutes les fonctionnalités</strong> marchent comme avant</li>
+                <li><input type="checkbox" class="checkbox"> <strong>Performance</strong> égale ou améliorée</li>
+                <li><input type="checkbox" class="checkbox"> <strong>Bundle size</strong> optimisé</li>
+                <li><input type="checkbox" class="checkbox"> <strong>Tests</strong> passent à 100%</li>
+                <li><input type="checkbox" class="checkbox"> <strong>Compatibilité navigateurs</strong> validée</li>
+                <li><input type="checkbox" class="checkbox"> <strong>Intégration backend</strong> (.NET 8) fonctionnelle</li>
+                <li><input type="checkbox" class="checkbox"> <strong>Documentation</strong> mise à jour</li>
+                <li><input type="checkbox" class="checkbox"> <strong>Équipe formée</strong> aux nouveautés</li>
+            </ul>
+        </div>
         </div>
 
         <!-- Tab 2: Detailed Instructions -->
