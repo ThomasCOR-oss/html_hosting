@@ -66,6 +66,55 @@
             border-radius: 4px;
         }
 
+        /* Tab Styles */
+        .tabs {
+            margin-bottom: 30px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #e1e5e9;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #7f8c8d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-button:hover {
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         .navigation {
             background: #f8f9fa;
             padding: 20px;
@@ -342,6 +391,49 @@
             height: 60px;
         }
 
+        /* Detailed Instructions Styles */
+        .version-section {
+            margin-bottom: 40px;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .version-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .version-content {
+            padding: 20px;
+        }
+
+        .instruction-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+        }
+
+        .instruction-item.warning {
+            background: #fff3cd;
+            border-left-color: #f39c12;
+        }
+
+        .instruction-item.info {
+            background: #d1ecf1;
+            border-left-color: #17a2b8;
+        }
+
+        .instruction-item.deprecated {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -371,6 +463,11 @@
                 margin: 20px auto;
                 display: flex;
             }
+
+            .tab-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -386,440 +483,577 @@
             </div>
         </div>
 
-        <div class="navigation">
-            <div class="nav-title"><i class="fas fa-compass"></i> Navigation Rapide</div>
-            <div class="nav-links">
-                <a href="#phase1" class="nav-link">🔍 Vérifications Préalables</a>
-                <a href="#phase2" class="nav-link">🚀 Migration Progressive</a>
-                <a href="#phase3" class="nav-link">🔧 Optimisations Post-Migration</a>
-                <a href="#phase4" class="nav-link">🛠️ Outils et Ressources</a>
-                <a href="#phase5" class="nav-link">⚠️ Gestion des Risques</a>
+        <div class="tabs">
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="showTab('migration-plan')">
+                    <i class="fas fa-route"></i> Plan de Migration
+                </button>
+                <button class="tab-button" onclick="showTab('detailed-instructions')">
+                    <i class="fas fa-list-check"></i> Instructions Détaillées
+                </button>
             </div>
-        </div>
 
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number">13</div>
-                <div class="stat-label">Versions à migrer</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">2-4</div>
-                <div class="stat-label">Semaines estimées</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Points de contrôle</div>
-            </div>
-        </div>
-
-        <div class="phase phase-1 expanded" id="phase1">
-            <div class="phase-header" onclick="togglePhase('phase1')">
-                <div class="phase-title">
-                    <i class="phase-icon fas fa-search"></i>
-                    Phase 1 : Vérifications Préalables
+            <!-- Tab 1: Migration Plan -->
+            <div id="migration-plan" class="tab-content active">
+                <div class="navigation">
+                    <div class="nav-title"><i class="fas fa-compass"></i> Navigation Rapide</div>
+                    <div class="nav-links">
+                        <a href="#phase1" class="nav-link">🔍 Vérifications Préalables</a>
+                        <a href="#phase2" class="nav-link">🚀 Migration Progressive</a>
+                        <a href="#phase3" class="nav-link">🔧 Optimisations Post-Migration</a>
+                        <a href="#phase4" class="nav-link">🛠️ Outils et Ressources</a>
+                        <a href="#phase5" class="nav-link">⚠️ Gestion des Risques</a>
+                    </div>
                 </div>
-                <i class="toggle-icon fas fa-chevron-up"></i>
+
+                <div class="stats">
+                     <div class="stat-card">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">Versions à migrer</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2-4</div>
+                    <div class="stat-label">Semaines estimées</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Points de contrôle</div>
+                </div>
             </div>
-            <div class="phase-content">
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-clipboard-list"></i> 1.1 Audit de l'existant</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Inventaire des dépendances</strong></li>
-                    </ul>
-                    <div class="code-block">
+
+            <div class="phase phase-1 expanded" id="phase1">
+                <div class="phase-header" onclick="togglePhase('phase1')">
+                    <div class="phase-title">
+                        <i class="phase-icon fas fa-search"></i>
+                        Phase 1 : Vérifications Préalables
+                    </div>
+                    <i class="toggle-icon fas fa-chevron-up"></i>
+                </div>
+                <div class="phase-content">
+                    <div class="section">
+                        <h3 class="section-title"><i class="fas fa-clipboard-list"></i> 1.1 Audit de l'existant</h3>
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Inventaire des dépendances</strong></li>
+                        </ul>
+                        <div class="code-block">
 npm list --depth=0
 npm outdated</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Analyse du code</strong>
-                            <ul class="checklist" style="margin-left: 20px;">
-                                <li><input type="checkbox" class="checkbox"> Identifier les packages tiers et leur compatibilité</li>
-                                <li><input type="checkbox" class="checkbox"> Recenser les custom libraries internes</li>
-                                <li><input type="checkbox" class="checkbox"> Vérifier l'utilisation d'APIs dépréciées</li>
-                            </ul>
-                        </li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Documentation de l'architecture actuelle</strong>
-                            <ul class="checklist" style="margin-left: 20px;">
-                                <li><input type="checkbox" class="checkbox"> Structure des modules</li>
-                                <li><input type="checkbox" class="checkbox"> Services et intercepteurs</li>
-                                <li><input
-```type="checkbox" class="checkbox"> Configuration du routing</li>
-                                <li><input type="checkbox" class="checkbox"> Configuration de build</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-cogs"></i> 1.2 Vérifications techniques</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Version Node.js</strong> : Vérifier la compatibilité (Angular 19 nécessite Node 18.19+)</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Package manager</strong> : npm/yarn version</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>TypeScript version</strong> actuelle</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Tests existants</strong> : S'assurer qu'ils passent avant migration</li>
-                    </ul>
-                </div>
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-tools"></i> 1.3 Préparation de l'environnement</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Backup complet</strong> du projet</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Création d'une branche dédiée</strong> `migration/angular-19`</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Setup d'un environnement de test</strong> isolé</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Documentation des configurations</strong> spécifiques (proxy, environnements, etc.)</li>
-                    </ul>
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Analyse du code</strong>
+                                <ul class="checklist" style="margin-left: 20px;">
+                                    <li><input type="checkbox" class="checkbox"> Identifier les packages tiers et leur compatibilité</li>
+                                    <li><input type="checkbox" class="checkbox"> Recenser les custom libraries internes</li>
+                                    <li><input type="checkbox" class="checkbox"> Vérifier l'utilisation d'APIs dépréciées</li>
+                                </ul>
+                            </li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Documentation de l'architecture actuelle</strong>
+                                <ul class="checklist" style="margin-left: 20px;">
+                                    <li><input type="checkbox" class="checkbox"> Structure des modules</li>
+                                    <li><input type="checkbox" class="checkbox"> Services et intercepteurs</li>
+                                    <li><input type="checkbox" class="checkbox"> Configuration du routing</li>
+                                    <li><input type="checkbox" class="checkbox"> Configuration de build</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="section">
+                        <h3 class="section-title"><i class="fas fa-cogs"></i> 1.2 Vérifications techniques</h3>
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Version Node.js</strong> : Vérifier la compatibilité (Angular 19 nécessite Node 18.19+)</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Package manager</strong> : npm/yarn version</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>TypeScript version</strong> actuelle</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Tests existants</strong> : S'assurer qu'ils passent avant migration</li>
+                        </ul>
+                    </div>
+                    <div class="section">
+                        <h3 class="section-title"><i class="fas fa-tools"></i> 1.3 Préparation de l'environnement</h3>
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Backup complet</strong> du projet</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Création d'une branche dédiée</strong> `migration/angular-19`</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Setup d'un environnement de test</strong> isolé</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Documentation des configurations</strong> spécifiques (proxy, environnements, etc.)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="phase phase-2" id="phase2">
-            <div class="phase-header" onclick="togglePhase('phase2')">
-                <div class="phase-title">
-                    <i class="phase-icon fas fa-rocket"></i>
-                    Phase 2 : Migration Progressive
+            <div class="phase phase-2" id="phase2">
+                <div class="phase-header" onclick="togglePhase('phase2')">
+                    <div class="phase-title">
+                        <i class="phase-icon fas fa-rocket"></i>
+                        Phase 2 : Migration Progressive
+                    </div>
+                    <i class="toggle-icon fas fa-chevron-down"></i>
                 </div>
-                <i class="toggle-icon fas fa-chevron-down"></i>
-            </div>
-            <div class="phase-content">
-                <div class="migration-step">
-                    <h4>Angular 6 → 7</h4>
-                    <div class="code-block">
+                <div class="phase-content">
+                    <div class="migration-step">
+                        <h4>Angular 6 → 7</h4>
+                        <div class="code-block">
 ng update @angular/cli@7 @angular/core@7</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Bundle budgets</strong> : Nouvelle configuration dans angular.json</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>CLI Prompts</strong> : Nouvelle fonctionnalité</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Virtual Scrolling</strong> : Vérifier si utilisé</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Drag and Drop</strong> : Nouvelle API CDK</li>
-                    </ul>
-                    <div class="warning">Validation : `ng build` sans erreurs, Tests unitaires passent, Application démarre correctement, Fonctionnalités critiques testées manuellement.</div>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 7 → 8</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Bundle budgets</strong> : Nouvelle configuration dans angular.json</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>CLI Prompts</strong> : Nouvelle fonctionnalité</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Virtual Scrolling</strong> : Vérifier si utilisé</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Drag and Drop</strong> : Nouvelle API CDK</li>
+                        </ul>
+                        <div class="warning">Validation : `ng build` sans erreurs, Tests unitaires passent, Application démarre correctement, Fonctionnalités critiques testées manuellement.</div>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 7 → 8</h4>
+                        <div class="code-block">
 ng update @angular/cli@8 @angular/core@8</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Dynamic imports</strong> pour lazy loading</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Ivy renderer</strong> (optionnel en v8)</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Web Workers</strong> support</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Differential loading</strong> automatique</li>
-                    </ul>
-                    <div class="warning">Actions spécifiques : Migrer les lazy routes avec `ng update`, Vérifier les polyfills, Tester sur différents navigateurs.</div>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 8 → 9</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Dynamic imports</strong> pour lazy loading</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Ivy renderer</strong> (optionnel en v8)</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Web Workers</strong> support</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Differential loading</strong> automatique</li>
+                        </ul>
+                        <div class="warning">Actions spécifiques : Migrer les lazy routes avec `ng update`, Vérifier les polyfills, Tester sur différents navigateurs.</div>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 8 → 9</h4>
+                        <div class="code-block">
 ng update @angular/cli@9 @angular/core@9</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Ivy renderer</strong> par défaut</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>ModuleWithProviders</strong> typing</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Lazy loading</strong> syntax obligatoire</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>i18n</strong> nouvelle approche</li>
-                    </ul>
-                    <div class="warning">Migration Ivy : Activer Ivy si pas déjà fait, Vérifier les custom libraries, Tester les dynamic components, Valider les ViewChild/ContentChild queries.</div>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 9 → 10</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Ivy renderer</strong> par défaut</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>ModuleWithProviders</strong> typing</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Lazy loading</strong> syntax obligatoire</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>i18n</strong> nouvelle approche</li>
+                        </ul>
+                        <div class="warning">Migration Ivy : Activer Ivy si pas déjà fait, Vérifier les custom libraries, Tester les dynamic components, Valider les ViewChild/ContentChild queries.</div>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 9 → 10</h4>
+                        <div class="code-block">
 ng update @angular/cli@10 @angular/core@10</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Date Range Picker</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>New Default Browser Configuration</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Angular Material</strong> mise à jour</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>New File Structure</strong> pour i18n</li>
-                    </ul>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 10 → 11</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Date Range Picker</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>New Default Browser Configuration</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Angular Material</strong> mise à jour</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>New File Structure</strong> pour i18n</li>
+                        </ul>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 10 → 11</h4>
+                        <div class="code-block">
 ng update @angular/cli@11 @angular/core@11</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Hot Module Replacement</strong> support</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Component Test Harnesses</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Updated Font Icons</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>TypeScript 4.0</strong> support</li>
-                    </ul>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 11 → 12</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Hot Module Replacement</strong> support</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Component Test Harnesses</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Updated Font Icons</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>TypeScript 4.0</strong> support</li>
+                        </ul>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 11 → 12</h4>
+                        <div class="code-block">
 ng update @angular/cli@12 @angular/core@12</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Ivy everywhere</strong> (View Engine déprécié)</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Sass support</strong> pour inline styles</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Webpack 5</strong> support</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Strict mode</strong> par défaut</li>
-                    </ul>
-                    <div class="warning">Actions critiques : Migrer de View Engine vers Ivy complètement, Vérifier les custom webpack configs, Tester les builds de production.</div>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 12 → 13</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Ivy everywhere</strong> (View Engine déprécié)</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Sass support</strong> pour inline styles</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Webpack 5</strong> support</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Strict mode</strong> par défaut</li>
+                        </ul>
+                        <div class="warning">Actions critiques : Migrer de View Engine vers Ivy complètement, Vérifier les custom webpack configs, Tester les builds de production.</div>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 12 → 13</h4>
+                        <div class="code-block">
 ng update @angular/cli@13 @angular/core@13</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>View Engine</strong> complètement supprimé</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Angular Package Format</strong> changes</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Node.js 16</strong> support</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>TypeScript 4.4</strong> support</li>
-                    </ul>
-                    <div class="warning">Migration spécifique : Vérifier toutes les libraries tierces, Mettre à jour les custom libraries, Tester les builds et le tree-shaking.</div>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 13 → 14</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>View Engine</strong> complètement supprimé</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Angular Package Format</strong> changes</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Node.js 16</strong> support</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>TypeScript 4.4</strong> support</li>
+                        </ul>
+                        <div class="warning">Migration spécifique : Vérifier toutes les libraries tierces, Mettre à jour les custom libraries, Tester les builds et le tree-shaking.</div>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 13 → 14</h4>
+                        <div class="code-block">
 ng update @angular/cli@14 @angular/core@14</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Standalone Components</strong> (optionnel)</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Angular CLI Auto-completion</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Optional injectors</strong> in Embedded Views</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Extended developer diagnostics</strong></li>
-                    </ul>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 14 → 15</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Standalone Components</strong> (optionnel)</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Angular CLI Auto-completion</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Optional injectors</strong> in Embedded Views</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Extended developer diagnostics</strong></li>
+                        </ul>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 14 → 15</h4>
+                        <div class="code-block">
 ng update @angular/cli@15 @angular/core@15</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Standalone APIs</strong> stables</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Directive composition API</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Image optimization</strong> directive</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>MDC-based Angular Material</strong></li>
-                    </ul>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Standalone APIs</strong> stables</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Directive composition API</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Image optimization</strong> directive</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>MDC-based Angular Material</strong></li>
+                        </ul>
+                        <div class="code-block">
 ng update @angular/material@15</div>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 15 → 16</h4>
-                    <div class="code-block">
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 15 → 16</h4>
+                        <div class="code-block">
 ng update @angular/cli@16 @angular/core@16</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Signals</strong> (developer preview)</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Required inputs</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Router data as input</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Non-destructive hydration</strong></li>
-                    </ul>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 16 → 17</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Signals</strong> (developer preview)</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Required inputs</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Router data as input</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Non-destructive hydration</strong></li>
+                        </ul>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 16 → 17</h4>
+                        <div class="code-block">
 ng update @angular/cli@17 @angular/core@17</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>New Application Builder</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>New Lifecycle Hooks</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>View Transitions API</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>SSR improvements</strong></li>
-                    </ul>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 17 → 18</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>New Application Builder</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>New Lifecycle Hooks</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>View Transitions API</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>SSR improvements</strong></li>
+                        </ul>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 17 → 18</h4>
+                        <div class="code-block">
 ng update @angular/cli@18 @angular/core@18</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Material 3</strong> support</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Control flow syntax</strong> stable</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Event replay</strong> for SSR</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Built-in control flow</strong> (@if, @for, @switch)</li>
-                    </ul>
-                </div>
-                <div class="migration-step">
-                    <h4>Angular 18 → 19</h4>
-                    <div class="code-block">
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Material 3</strong> support</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Control flow syntax</strong> stable</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Event replay</strong> for SSR</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Built-in control flow</strong> (@if, @for, @switch)</li>
+                        </ul>
+                    </div>
+                    <div class="migration-step">
+                        <h4>Angular 18 → 19</h4>
+                        <div class="code-block">
 ng update @angular/cli@19 @angular/core@19</div>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Signals</strong> stables</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Standalone ng-new collection</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Improved hydration</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Performance optimizations</strong></li>
-                    </ul>
+                        <ul class="checklist">
+                            <li><input type="checkbox" class="checkbox"> <strong>Signals</strong> stables</li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Standalone ng-new collection</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Improved hydration</strong></li>
+                            <li><input type="checkbox" class="checkbox"> <strong>Performance optimizations</strong></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="phase phase-3" id="phase3">
-            <div class="phase-header" onclick="togglePhase('phase3')">
-                <div class="phase-title">
-                    <i class="phase-icon fas fa-wrench"></i>
-                    Phase 3 : Optimisations Post-Migration
+        <!-- Tab 2: Detailed Instructions -->
+        <div id="detailed-instructions" class="tab-content">
+            <div class="version-section">
+                <div class="version-header">Avant de mettre à jour</div>
+                <div class="version-content">
+                    <div class="instruction-item">
+                        <strong>Remplacez Renderer par Renderer2</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez HttpModule et le service Http, passez à HttpClientModule et au service HttpClient.</strong> HttpClient simplifie les ergonomies par défaut et prend désormais en charge les valeurs de retour typées et les intercepteurs.
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Le support de ngModel avec les directives de formulaire réactives a été déprécié en v6 et supprimé en v7.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Supprimez les fonctionnalités dépréciées de RxJS 5 en utilisant les règles de mise à jour automatique rxjs-tslint.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Pour la plupart des applications, cela signifie exécuter les deux commandes :</strong>
+                        <div class="code-block">
+npx rxjs-tslint
+rxjs-5-to-6-migrate -p src/tsconfig.app.json</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Une fois que vous et toutes vos dépendances ont été mises à jour vers RxJS 6, supprimez rxjs-compat.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Mettez à jour vers la nouvelle version.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez le service worker Angular, migrez les fichiers versionnés vers le tableau de fichiers.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Angular utilise maintenant TypeScript 3.1, lisez les notes de version pour les changements potentiels.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Angular a maintenant ajouté le support pour Node 10.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Mettez à jour vers v7 du framework et CLI en exécutant :</strong>
+                        <div class="code-block">
+cmd /C "set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@7 update @angular/cli@7 @angular/core@7"</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Mettez à jour Angular Material vers v7 :</strong>
+                        <div class="code-block">
+cmd /C "set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@7 update @angular/material@7"</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez des tests de capture d'écran , vous devrez régénérer vos fichiers d'or pour les captures d'écran, car de nombreux ajustements visuels mineurs ont été apportés.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Arrêtez d'utiliser matRippleSpeedFactor et baseSpeedFactor pour les ripples, utilisez plutôt la configuration d'animation.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Mettez à jour vers la version 8 du framework et CLI :</strong>
+                        <div class="code-block">
+cmd /C "set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@8 update @angular/cli@8 @angular/core@8"</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Remplacez /deep/ par ::ng-deep dans vos styles.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Angular utilise maintenant TypeScript 3.4, lisez les notes de version pour les erreurs potentielles.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Assurez-vous d'utiliser Node 10 ou une version ultérieure.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>La commande de build du CLI crée automatiquement une build moderne ES2015 avec des polyfills minimaux.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Lorsque vous utilisez de nouvelles versions du CLI, vous serez invité à partager vos données d'utilisation du CLI.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez ViewChild ou ContentChild, nous mettons à jour la façon dont nous résolvons ces requêtes.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Mettez à jour Angular Material vers la version 8 :</strong>
+                        <div class="code-block">
+cmd /C "set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@8 update @angular/material@8"</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Au lieu d'importer depuis @angular/material, vous devez importer profondément depuis le composant spécifique.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Pour les modules chargés paresseusement via le routeur, assurez-vous d'utiliser des imports dynamiques.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Nous déprécions le support pour @angular/platform-webworker.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Nous avons changé du compilateur Sass natif au compilateur JavaScript.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous construisez vos propres schématiques, elles étaient potentiellement asynchrones.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Assurez-vous d'utiliser Node 10.13 ou une version ultérieure.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Exécutez la commande suivante pour mettre à jour vers la dernière version 8.x :</strong>
+                        <div class="code-block">
+cmd /C "set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@8 update @angular/cli@8 @angular/core@8"</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Vous pouvez passer l'option --create-commits pour créer un commit git par migration individuelle.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Exécutez la commande suivante pour mettre à jour vers la version 9 d'Angular :</strong>
+                        <div class="code-block">
+cmd /C "set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@9 update @angular/cli@9 @angular/core@9"</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Votre projet a maintenant été mis à jour vers TypeScript 3.8.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Exécutez la commande suivante pour mettre à jour Angular Universal :</strong>
+                        <div class="code-block">
+cmd /C "set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@9 update @nguniversal/hapi-engine@9"</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si votre projet dépend d'autres bibliothèques Angular, envisagez de les mettre à jour vers leur dernière version.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Lors de la mise à jour vers la version 9, votre projet a été transformé pour supprimer les appels d'API incompatibles ou dépréciés.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Les styles et classes CSS liés étaient appliqués avec une stratégie "dernier changement gagne".</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous êtes un auteur de bibliothèque et que vous aviez une méthode retournant ModuleWithProviders, vous devrez spécifier le type générique.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Le support pour le cadre de traçage web dans Angular a été déprécié.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Supprimez les drapeaux es5BrowserSupport dans votre angular.json et définissez votre cible sur es2015 dans votre tsconfig.json.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez l'élément ngForm pour créer des formulaires Angular, utilisez plutôt ng-form.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Nous avons mis à jour le tsconfig.app.json pour limiter les fichiers compilés.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Avec Angular 9, Ivy est maintenant le moteur de rendu par défaut.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez Angular Universal, plusieurs fichiers de sauvegarde seront créés.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Angular 9 a introduit une fonction globale $localize qui doit être chargée si vous dépendez de l'internationalisation d'Angular.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Dans vos projets d'application, vous pouvez supprimer les NgModules entryComponents.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez TestBed.get, utilisez plutôt TestBed.inject.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez le support i18n d'Angular, vous devrez commencer à utiliser @angular/localize.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Assurez-vous d'utiliser Node 12 ou une version ultérieure.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Exécutez la commande suivante pour mettre à jour vers la version 10 d'Angular :</strong>
+                        <div class="code-block">
+npx @angular/cli@10 update @angular/core@10 @angular/cli@10</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Exécutez la commande suivante pour mettre à jour Angular Material :</strong>
+                        <div class="code-block">
+npx @angular/cli@10 update @angular/material@10</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Les nouveaux projets utilisent le fichier .browserslistrc au lieu de browserslist.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Angular nécessite maintenant tslint v6, tslib v2 et TypeScript 3.9.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Arrêtez d'utiliser styleext ou spec dans vos schématiques Angular.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Dans la version 10, les classes qui utilisent des fonctionnalités Angular et n'ont pas de décorateur Angular ne sont plus prises en charge.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>À partir d'Angular 9, l'application des décorateurs @Injectable pour DI est plus stricte.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Les paquets NPM d'Angular ne contiennent plus de commentaires jsdoc.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez des formulaires Angular, les entrées de type number n'écoutent plus les événements de changement.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Pour la validation des formulaires Angular, les validateurs minLength et maxLength vérifient maintenant que la valeur du contrôle de formulaire a une propriété de longueur numérique.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Le format de paquet Angular a été mis à jour pour supprimer les formats esm5 et fesm5.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Les avertissements concernant les éléments inconnus sont maintenant enregistrés comme des erreurs.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Tout résolveur qui retourne EMPTY annulera la navigation.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez le service worker Angular et dépendez de ressources avec des en-têtes Vary, ces en-têtes sont maintenant ignorés.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Vous pourriez voir des erreurs ExpressionChangedAfterItHasBeenChecked qui n'étaient pas détectées auparavant.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous avez un binding de propriété tel que [val]=(observable | async).someProperty, cela ne déclenchera plus la détection des changements si la valeur de someProperty est identique à l'émission précédente.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez formatDate() ou DatePipe avec des codes de format b ou B, la logique a été mise à jour.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez le UrlMatcher, le type reflète maintenant qu'il pourrait toujours retourner null.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Pour plus de détails sur les dépréciations, les migrations automatisées et les changements, consultez le guide angular.io.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Pour les utilisateurs d'Angular Universal, si vous utilisez useAbsoluteUrl pour configurer platform-server, vous devez également spécifier baseUrl.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Exécutez la commande suivante pour mettre à jour vers la version 11 d'Angular :</strong>
+                        <div class="code-block">
+ng update @angular/core@11 @angular/cli@11</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Exécutez la commande suivante pour mettre à jour Angular Material :</strong>
+                        <div class="code-block">
+ng update @angular/material@11</div>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Angular nécessite maintenant TypeScript 4.0.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Le support pour IE9, IE10 et IE mobile a été supprimé.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Vous pouvez maintenant choisir d'utiliser webpack 5.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Lorsque vous générez de nouveaux projets, vous serez invité à activer le mode strict.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez le routeur, la valeur par défaut de relativeLinkResolution a changé.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Dans le routeur Angular, les options dépréciées en v4 pour initialNavigation ont été supprimées.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Dans le routerLink, preserveQueryParams a été supprimé.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous accédez aux valeurs routerLink de queryParams, fragment ou queryParamsHandling, vous devrez peut-être assouplir le typage.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>La stratégie d'encapsulation de vue ViewEncapsulation.Native a été supprimée.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez i18n, les expressions dans les expressions ICU sont maintenant vérifiées par type.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Les directives dans le paquet @angular/forms ont maintenant des types appropriés.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez Angular Forms, le type de AbstractFormControl.parent inclut maintenant null.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Les paquets Angular ne contiennent plus de commentaires jsdoc.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez Angular forms, les entrées de type number n'écoutent plus les événements de changement.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Pour la validation des formulaires Angular, les validateurs minLength et maxLength vérifient maintenant que la valeur du contrôle de formulaire a une propriété de longueur numérique.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Le format de paquet Angular a été mis à jour pour supprimer les formats esm5 et fesm5.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Les avertissements concernant les éléments inconnus sont maintenant enregistrés comme des erreurs.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Tout résolveur qui retourne EMPTY annulera la navigation.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez le service worker Angular et dépendez de ressources avec des en-têtes Vary, ces en-têtes sont maintenant ignorés.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Vous pourriez voir des erreurs ExpressionChangedAfterItHasBeenChecked qui n'étaient pas détectées auparavant.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous avez un binding de propriété tel que [val]=(observable | async).someProperty, cela ne déclenchera plus la détection des changements si la valeur de someProperty est identique à l'émission précédente.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez formatDate() ou DatePipe avec des codes de format b ou B, la logique a été mise à jour.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Si vous utilisez le UrlMatcher, le type reflète maintenant qu'il pourrait toujours retourner null.</strong>
+                    </div>
+                    <div class="instruction-item">
+                        <strong>Pour plus de détails sur les dépréciations, les migrations automatisées et les changements, consultez le guide angular.io.</strong>
+                    </div>
                 </div>
-                <i class="toggle-icon fas fa-chevron-down"></i>
             </div>
-            <div class="phase-content">
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-code"></i> 3.1 Modernisation du code</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Adoption des Standalone Components</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Migration vers les Signals</strong> (si applicable)</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Utilisation du nouveau Control Flow</strong> (@if, @for, @switch)</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Optimisation des imports</strong> et tree-shaking</li>
-                    </ul>
-                </div>
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-chart-line"></i> 3.2 Performance et build</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Analyse des bundles</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Optimisation des lazy loading</strong></li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Configuration des budgets</strong> dans angular.json</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Tests de performance</strong> avant/après</li>
-                    </ul>
-                </div>
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-check-circle"></i> 3.3 Tests et validation</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Tests unitaires</strong> complets</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Tests e2e</strong> sur les parcours critiques</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Tests de régression</strong> visuels</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Tests de performance</strong> (Lighthouse, etc.)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="phase phase-4" id="phase4">
-            <div class="phase-header" onclick="togglePhase('phase4')">
-                <div class="phase-title">
-                    <i class="phase-icon fas fa-tools"></i>
-                    Phase 4 : Outils et Ressources
-                </div>
-                <i class="toggle-icon fas fa-chevron-down"></i>
-            </div>
-            <div class="phase-content">
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-cogs"></i> Outils de migration</h3>
-                    <ul class="tools-grid">
-                        <li class="tool-card">
-                            <h4>Angular Update Guide</h4>
-                            <ul>
-                                <li><a href="https://update.angular.io/" target="_blank">https://update.angular.io/</a></li>
-                            </ul>
-                        </li>
-                        <li class="tool-card">
-                            <h4>ng update</h4>
-                            <ul>
-                                <li>Outil officiel de migration</li>
-                            </ul>
-                        </li>
-                        <li class="tool-card">
-                            <h4>Angular DevKit</h4>
-                            <ul>
-                                <li>Pour les migrations custom</li>
-                            </ul>
-                        </li>
-                        <li class="tool-card">
-                            <h4>Codelyzer</h4>
-                            <ul>
-                                <li>Analyse statique du code</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-check"></i> Outils de validation</h3>
-                    <ul class="tools-grid">
-                        <li class="tool-card">
-                            <h4>Angular CLI Analyzer</h4>
-                            <ul>
-                                <li><code>ng build --stats-json</code></li>
-                            </ul>
-                        </li>
-                        <li class="tool-card">
-                            <h4>Bundle Analyzer</h4>
-                            <ul>
-                                <li><code>webpack-bundle-analyzer</code></li>
-                            </ul>
-                        </li>
-                        <li class="tool-card">
-                            <h4>Lighthouse</h4>
-                            <ul>
-                                <li>Performance testing</li>
-                            </ul>
-                        </li>
-                        <li class="tool-card">
-                            <h4>Angular DevTools</h4>
-                            <ul>
-                                <li>Debug et profiling</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-book"></i > Documentation</h3>
-                    <ul class="tools-grid">
-                        <li class="tool-card">
-                            <h4>Angular Changelog</h4>
-                            <ul>
-                                <li>Détails de chaque version</li>
-                            </ul>
-                        </li>
-                        <li class="tool-card">
-                            <h4>Angular Blog</h4>
-                            <ul>
-                                <li>Annonces et guides</li>
-                            </ul>
-                        </li>
-                        <li class="tool-card">
-                            <h4>GitHub Issues</h4>
-                            <ul>
-                                <li>Pour les problèmes spécifiques</li>
-                            </ul>
-                        </li>
-                        <li class="tool-card">
-                            <h4>Stack Overflow</h4>
-                            <ul>
-                                <li>Communauté</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="phase phase-5" id="phase5">
-            <div class="phase-header" onclick="togglePhase('phase5')">
-                <div class="phase-title">
-                    <i class="phase-icon fas fa-exclamation-triangle"></i>
-                    Phase 5 : Gestion des Risques
-                </div>
-                <i class="toggle-icon fas fa-chevron-down"></i>
-            </div>
-            <div class="phase-content">
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-check-circle"></i> Validation à chaque étape</h3>
-                    <div class="code-block">
-# Script de validation type
-npm run test
-npm run e2e
-ng build --prod
-ng lint</div>
-                </div>
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-undo"></i> Rollback strategy</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Tags Git</strong> à chaque version stable</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Documentation des changements</strong> critiques</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Plan de rollback</strong> pour chaque étape</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Tests de régression</strong> automatisés</li>
-                    </ul>
-                </div>
-                <div class="section">
-                    <h3 class="section-title"><i class="fas fa-exclamation"></i> Gestion des breaking changes</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" class="checkbox"> <strong>Lecture systématique</strong> des changelogs</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Tests sur environnement</strong> de staging</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Migration progressive</strong> des features</li>
-                        <li><input type="checkbox" class="checkbox"> <strong>Monitoring</strong> post-déploiement</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h3 class="section-title"><i class="fas fa-list-check"></i> Checklist de Validation Finale</h3>
-            <ul class="checklist">
-                <li><input type="checkbox" class="checkbox"> <strong>Toutes les fonctionnalités</strong> marchent comme avant</li>
-                <li><input type="checkbox" class="checkbox"> <strong>Performance</strong> égale ou améliorée</li>
-                <li><input type="checkbox" class="checkbox"> <strong>Bundle size</strong> optimisé</li>
-                <li><input type="checkbox" class="checkbox"> <strong>Tests</strong> passent à 100%</li>
-                <li><input type="checkbox" class="checkbox"> <strong>Compatibilité navigateurs</strong> validée</li>
-                <li><input type="checkbox" class="checkbox"> <strong>Intégration backend</strong> (.NET 8) fonctionnelle</li>
-                <li><input type="checkbox" class="checkbox"> <strong>Documentation</strong> mise à jour</li>
-                <li><input type="checkbox" class="checkbox"> <strong>Équipe formée</strong> aux nouveautés</li>
-            </ul>
         </div>
     </div>
 
@@ -831,6 +1065,19 @@ ng lint</div>
             toggleIcon.classList.toggle('fa-chevron-up');
             toggleIcon.classList.toggle('fa-chevron-down');
             updateProgress();
+        }
+
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
         }
 
         function updateProgress() {
@@ -847,4 +1094,4 @@ ng lint</div>
         });
     </script>
 </body>
-</html> --- End of CSV data ---
+</html>
